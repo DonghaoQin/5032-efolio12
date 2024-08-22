@@ -1,5 +1,6 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue';
+
 import DataTable from 'primevue/datatable'
 import Column from 'primevue/column'
 
@@ -9,7 +10,8 @@ const formData = ref({
   confirmPassword: '',
   isAustralian: false,
   reason: '',
-  gender: ''
+  gender: '',
+  suburb: 'Clayton'
 })
 
 
@@ -18,6 +20,7 @@ const submittedCards = ref([])
 const submitForm = () => {
   validateName(true)
   validatePassword(true)
+  validateReason()
   if (!errors.value.username && !errors.value.password) {
     submittedCards.value.push({ ...formData.value })
     clearForm()
@@ -42,6 +45,21 @@ const errors = ref({
   gender: null,
   reason: null
 })
+
+
+
+const friendMessage = computed(() => {
+  const reason = formData.value.reason;
+
+  
+  if (reason.length >= 10 && reason.toLowerCase().includes('friend')) {
+    return 'Great to have a friend';
+  }
+  return '';
+});
+
+
+
 
 
 const validateName = (blur) => {
@@ -76,7 +94,6 @@ const validatePassword = (blur) => {
   }
 }
 
-
   const validateConfirmPassword = (blur) => {
    if (formData.value.password !== formData.value.confirmPassword) {
      if (blur) errors.value.confirmPassword = 'Passwords do not match.'
@@ -86,6 +103,19 @@ const validatePassword = (blur) => {
   }
 
 
+
+const validateReason = () => {
+  const reason = formData.value.reason;
+
+  
+  if (reason.length < 10) {
+    errors.value.reason = 'Reason must be at least 10 characters long.';
+  } else if (reason.toLowerCase().includes('friend')) {
+    errors.value.reason = null; 
+  } else {
+    errors.value.reason = null; 
+  }
+}
 
 
 
@@ -175,15 +205,31 @@ const validatePassword = (blur) => {
               </div>
             </div>
           </div> 
+
+
           <div class="mb-3">
             <label for="reason" class="form-label">Reason for joining</label>
             <textarea
-              class="form-control"
-              id="reason"
-              rows="3"
-              v-model="formData.reason"
+               class="form-control"
+               id="reason"
+               rows="3"
+               v-model="formData.reason"
+               @input="validateReason"
             ></textarea>
+            <div v-if="errors.reason" class="text-danger">
+               {{ errors.reason }}
+            </div>
+            <div v-if="friendMessage" class="text-success">
+               {{ friendMessage }}
+            </div>
           </div>
+
+          <div class="mb-3">
+            <label for="reason" class="form-label">Suburb</label>
+            <input type="text" class="form-control" id="suburb" v-bind:value="formData.suburb" />
+          </div>
+
+          
           <div class="text-center">
             <button type="submit" class="btn btn-primary me-2">Submit</button>
             <button type="button" class="btn btn-secondary" @click="clearForm">Clear</button>
