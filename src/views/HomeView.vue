@@ -4,6 +4,7 @@ import { ref, computed } from 'vue';
 import DataTable from 'primevue/datatable'
 import Column from 'primevue/column'
 
+
 const formData = ref({
   username: '',
   password: '',
@@ -13,7 +14,6 @@ const formData = ref({
   gender: '',
   suburb: 'Clayton'
 })
-
 
 const submittedCards = ref([])
 
@@ -116,6 +116,10 @@ const validateReason = () => {
     errors.value.reason = null; 
   }
 }
+
+
+
+
 
 
 
@@ -271,6 +275,17 @@ const validateReason = () => {
       </div>
     </div>
   </div>
+
+
+  <div class="mb-3">
+            <label for="reason" class="form-label">Suburb</label>
+            <input type="text" class="form-control" id="suburb" v-bind:value="formData.suburb" />
+  </div>
+
+
+
+
+
 </template>
 
 <style scoped>
