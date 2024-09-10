@@ -17,6 +17,12 @@
   const router = useRouter()
   const auth = getAuth()
   
+
+
+
+
+
+
   const signin = () => {
     signInWithEmailAndPassword(getAuth(), email.value, password.value)
       .then((data) => {

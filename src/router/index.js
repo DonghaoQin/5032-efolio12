@@ -4,9 +4,13 @@ import AboutView from '../views/AboutView.vue';
 import LoginView from '../views/LoginView.vue';
 import FirebaseSigninView from '../views/FirebaseSigninView.vue'; // Import FirebaseSigninView
 import FirebaseRegisterView from '../views/FirebaseRegisterView.vue'; // Import FirebaseRegisterView
+import FirebaseLogoutView from '../views/FirebaseLogoutView.vue'; // Import FirebaseLogoutView
+import { getAuth } from "firebase/auth";
 
+// Firebase auth check
 const isLoggedIn = () => {
-  return localStorage.getItem('isLoggedIn') === 'true';
+  const auth = getAuth();
+  return auth.currentUser !== null;
 };
 
 const routes = [
@@ -33,14 +37,19 @@ const routes = [
     component: LoginView,
   },
   {
-    path: '/FireLogin',
+    path: '/firelogin',
     name: 'FireLogin',
     component: FirebaseSigninView 
   },
   {
-    path: '/Fireregister',
-    name: 'Fireregister',
+    path: '/fireregister',
+    name: 'FireRegister',
     component: FirebaseRegisterView 
+  },
+  {
+    path: '/firelogout',
+    name: 'FireLogout',
+    component: FirebaseLogoutView 
   },
 ];
 
