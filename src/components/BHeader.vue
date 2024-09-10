@@ -10,7 +10,8 @@
         <li class="nav-item">
           <router-link to="/about" class="nav-link" active-class="active">About</router-link>
         </li>
-        <!-- 根据用户是否登录，显示不同的链接 -->
+       
+
         <li class="nav-item" v-if="!isLoggedIn">
           <router-link to="/login" class="nav-link" active-class="active">Login</router-link>
         </li>
@@ -20,7 +21,9 @@
         <li class="nav-item">
             <router-link to="/Firelogin" class="nav-link" active-class="active">Firebase Login</router-link>
         </li>
-
+        <li class="nav-item">
+            <router-link to="/Fireregister" class="nav-link" active-class="active">Firebase Register</router-link>
+        </li>
       </ul>
     </header>
   </div>
@@ -34,14 +37,14 @@ const isLoggedIn = ref(localStorage.getItem('isLoggedIn') === 'true');
 const router = useRouter();
 
 const logout = () => {
-  localStorage.removeItem('isLoggedIn'); // 清除登录状态
-  isLoggedIn.value = false; // 更新本地状态
-  router.push('/login'); // 重定向到登录页面
+  localStorage.removeItem('isLoggedIn'); 
+  isLoggedIn.value = false; 
+  router.push('/login'); 
 };
 </script>
 
 <style scoped>
-/* 确保导航项之间有足够的间距 */
+
 .nav-pills .nav-item {
   margin-right: 15px;
 }

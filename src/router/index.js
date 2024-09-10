@@ -35,9 +35,13 @@ const routes = [
   {
     path: '/FireLogin',
     name: 'FireLogin',
-    component: FirebaseSigninView // Ensure component is correctly imported
+    component: FirebaseSigninView 
   },
-
+  {
+    path: '/Fireregister',
+    name: 'Fireregister',
+    component: FirebaseRegisterView 
+  },
 ];
 
 const router = createRouter({
