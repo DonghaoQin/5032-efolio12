@@ -2,10 +2,12 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import AboutView from '../views/AboutView.vue';
 import LoginView from '../views/LoginView.vue';
-import FirebaseSigninView from '../views/FirebaseSigninView.vue'; // Import FirebaseSigninView
-import FirebaseRegisterView from '../views/FirebaseRegisterView.vue'; // Import FirebaseRegisterView
-import FirebaseLogoutView from '../views/FirebaseLogoutView.vue'; // Import FirebaseLogoutView
+import FirebaseSigninView from '../views/FirebaseSigninView.vue';
+import FirebaseRegisterView from '../views/FirebaseRegisterView.vue';
+import FirebaseLogoutView from '../views/FirebaseLogoutView.vue';
 import { getAuth } from "firebase/auth";
+import AddBookView from '../views/AddBookView.vue';
+import BookListView from '../views/BookListView.vue'; // Ensure the file name matches
 
 // Firebase auth check
 const isLoggedIn = () => {
@@ -51,6 +53,16 @@ const routes = [
     name: 'FireLogout',
     component: FirebaseLogoutView 
   },
+  {
+    path: '/addbook',
+    name: 'AddBook',
+    component: AddBookView 
+  },
+  {
+    path: '/booklist',
+    name: 'BookList',
+    component: BookListView
+  },
 ];
 
 const router = createRouter({
@@ -59,6 +71,3 @@ const router = createRouter({
 });
 
 export default router;
-
-
-
