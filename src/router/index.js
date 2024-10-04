@@ -7,8 +7,8 @@ import FirebaseRegisterView from '../views/FirebaseRegisterView.vue';
 import FirebaseLogoutView from '../views/FirebaseLogoutView.vue';
 import { getAuth } from "firebase/auth";
 import AddBookView from '../views/AddBookView.vue';
-import BookListView from '../views/BookListView.vue'; // Ensure the file name matches
-
+import BookListView from '../views/BookListView.vue'; 
+import GetBookCountView from '../views/GetBookCountView.vue';
 // Firebase auth check
 const isLoggedIn = () => {
   const auth = getAuth();
@@ -62,6 +62,11 @@ const routes = [
     path: '/booklist',
     name: 'BookList',
     component: BookListView
+  },
+  {
+    path: '/GetbookCount',
+    name: 'GetBookCount',
+    component: GetBookCountView
   },
 ];
 

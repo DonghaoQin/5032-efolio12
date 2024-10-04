@@ -3,7 +3,8 @@ import { ref, computed } from 'vue';
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 
-import Header from '../components/BHeader.vue';
+// Removed import for Header since it's already globally included
+// import Header from '../components/BHeader.vue';
 
 const formData = ref({
   username: '',
@@ -108,15 +109,12 @@ const validateReason = () => {
 </script>
 
 <template>
-  <!-- Header 组件 -->
-  <Header />
-
-  <!-- 🗄️ W3. Library Registration Form -->
+  <!-- Removed Header component -->
+  
   <div class="container mt-5">
- 
     <div class="row">
       <div class="col-md-8 offset-md-2">
-        <h1 class="text-center">🗄️ W5. Library Registration Form</h1>
+        <h1 class="text-center"> W5. Library Registration Form</h1>
         <p class="text-center">
           This form now includes validation. Registered users are displayed in a data table below
           (PrimeVue).
@@ -256,24 +254,20 @@ const validateReason = () => {
   </div>
 </template>
 
-
 <style scoped>
 .container {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   max-width: 80vw;
   margin: 0 auto;
   padding: 20px;
-  /* background-color: #e0bfbf; */
   border-radius: 10px;
 }
 
-/* Class selectors */
 .form {
   text-align: center;
   margin-top: 50px;
 }
 
-/* ID selectors */
 #username:focus,
 #password:focus,
 #isAustralian:focus,
