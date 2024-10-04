@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue';
-import { useRouter } from 'vue-router'; // 导入 useRouter 以便导航
+import { useRouter } from 'vue-router'; 
 import DataTable from 'primevue/datatable';
 import Column from 'primevue/column';
 
@@ -19,7 +19,7 @@ const errors = ref({
   password: null,
 });
 
-const router = useRouter(); // 获取路由实例
+const router = useRouter(); 
 
 const validateName = (blur) => {
   if (formData.value.username.length < 3) {
@@ -48,8 +48,8 @@ const submitForm = () => {
     formData.value.password === hardcodePassword
   ) {
     alert("Login success");
-    localStorage.setItem('isLoggedIn', 'true'); // 设置登录状态
-    router.push('/about'); // 登录成功后跳转到 About 页面
+    localStorage.setItem('isLoggedIn', 'true'); 
+    router.push('/about'); 
   }
 };
 

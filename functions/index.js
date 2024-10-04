@@ -15,6 +15,7 @@ const cors = require("cors")({ origin: true });
 
 admin.initializeApp();
 
+// Function to count books
 exports.countBooks = onRequest((req, res) => {
   cors(req, res, async () => {
     try {
@@ -30,10 +31,29 @@ exports.countBooks = onRequest((req, res) => {
   });
 });
 
-// Create and deploy your first functions
-// https://firebase.google.com/docs/functions/get-started
+// Function to add a new book with capitalized data
+exports.addBook = onRequest((req, res) => {
+  cors(req, res, async () => {
+    try {
+      const { title, author } = req.body;
 
-// exports.helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+      // Capitalize the title and author
+      const capitalizedTitle = title.toUpperCase();
+      const capitalizedAuthor = author.toUpperCase();
+
+      // Add the new book to Firestore
+      const docRef = await admin.firestore().collection("books").add({
+        title: capitalizedTitle,
+        author: capitalizedAuthor,
+      });
+
+      // Send a response with the added book information
+      res.status(200).send({ id: docRef.id, title: capitalizedTitle, author: capitalizedAuthor });
+    } catch (error) {
+      console.error("Error adding book:", error.message);
+      res.status(500).send("Error adding book");
+    }
+  });
+});
+
+

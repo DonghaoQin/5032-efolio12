@@ -1,6 +1,7 @@
 <script setup>
 import JSONLab from './components/JSONLab.vue'
 import BHeader from './components/BHeader.vue'
+import CountBookAPI from './views/CountBookAPI.vue';
 import LibraryRegistrationForm from './views/HomeView.vue'
 </script>
 
@@ -16,6 +17,9 @@ import LibraryRegistrationForm from './views/HomeView.vue'
       <router-view></router-view>
     </main>
   </div>
+
+  
+
 </template>
 
 <style scoped>

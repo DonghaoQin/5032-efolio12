@@ -1,10 +1,7 @@
 <template>
-  <div id="app">
-    <h1>Book Counter</h1>
-    <button @click="getBookCount">Get Book Count</button>
-
-    <!-- Display total count if available, otherwise show error -->
-    <p v-if="count !== null">Total number of books: {{ count }}</p>
+  <div>
+    <h1>Book Count Data</h1>
+    <pre>{{ JSON.stringify(jsondata, null, 2) }}</pre>
     <p v-if="error">{{ error }}</p>
   </div>
 </template>
@@ -15,43 +12,43 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      count: null, // Book count
-      error: null, // Error message if API request fails
+      jsondata: null,
+      error: null
     };
   },
-  methods: {
-    async getBookCount() {
-      try {
-        // Clear previous values
-        this.count = null;
-        this.error = null;
-
-        // Make the API call to get the book count (replace with actual URL)
-        const response = await axios.get('https://countbooks-hxg5pqiaoa-uc.a.run.app'); // Make sure to replace this URL
-
-        // Assuming the API response has a 'count' property
-        this.count = response.data.count;
-      } catch (error) {
-        console.error('Error fetching book count:', error);
-        this.error = 'Failed to get the book count'; // Display error message
-        this.count = null; // Clear count on error
-      }
-    },
+  mounted() {
+    this.getBookCountAPI();
   },
+  methods: {
+    async getBookCountAPI() {
+      try {
+        const response = await axios.get('https://your-api-url.com/countBooks');
+        this.jsondata = response.data;
+        this.error = null;
+      } catch (error) {
+        this.error = 'Failed to fetch book count. Please try again later.';
+        this.jsondata = null;
+      }
+    }
+  }
 };
 </script>
 
 <style scoped>
-button {
-  padding: 10px 20px;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
 }
 
-button:hover {
-  background-color: #45a049;
+pre {
+  background-color: #f5f5f5;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+p {
+  color: red;
+  font-size: 16px;
 }
 </style>

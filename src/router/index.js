@@ -9,6 +9,8 @@ import { getAuth } from "firebase/auth";
 import AddBookView from '../views/AddBookView.vue';
 import BookListView from '../views/BookListView.vue'; 
 import GetBookCountView from '../views/GetBookCountView.vue';
+import WeatherView from '../views/WeatherView.vue';
+import CountBookAPI from '../views/CountBookAPI.vue';
 // Firebase auth check
 const isLoggedIn = () => {
   const auth = getAuth();
@@ -68,6 +70,17 @@ const routes = [
     name: 'GetBookCount',
     component: GetBookCountView
   },
+  {
+    path: '/WeatherCheck',
+    name: 'WeatherCheck',
+    component: WeatherView
+  },
+  {
+    path: '/CountBookAPI',
+    name: 'CountBookAPI',
+    component: CountBookAPI
+  }
+  
 ];
 
 const router = createRouter({
