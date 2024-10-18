@@ -11,6 +11,7 @@ import BookListView from '../views/BookListView.vue';
 import GetBookCountView from '../views/GetBookCountView.vue';
 import WeatherView from '../views/WeatherView.vue';
 import CountBookAPI from '../views/CountBookAPI.vue';
+
 // Firebase auth check
 const isLoggedIn = () => {
   const auth = getAuth();
@@ -66,25 +67,24 @@ const routes = [
     component: BookListView
   },
   {
-    path: '/GetbookCount',
+    path: '/getbookcount',
     name: 'GetBookCount',
     component: GetBookCountView
   },
   {
-    path: '/WeatherCheck',
+    path: '/weathercheck',
     name: 'WeatherCheck',
     component: WeatherView
   },
   {
-    path: '/CountBookAPI',
+    path: '/countbookapi',
     name: 'CountBookAPI',
     component: CountBookAPI
   }
-  
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(), // Using BASE_URL for cleaner URLs
   routes,
 });
 
