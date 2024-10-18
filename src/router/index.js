@@ -84,7 +84,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(), // Using BASE_URL for cleaner URLs
+  history: createWebHistory('/5032-efolio12/'), 
   routes,
 });
 
